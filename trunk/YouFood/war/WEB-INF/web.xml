@@ -9,14 +9,4 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description>JAX-RS Tools Generated - Do not modify</description>
-    <servlet-name>JAX-RS Servlet</servlet-name>
-    <servlet-class>com.restservice.resources.RestApiServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>JAX-RS Servlet</servlet-name>
-    <url-pattern>/rest/*</url-pattern>
-  </servlet-mapping>
 </web-app>
