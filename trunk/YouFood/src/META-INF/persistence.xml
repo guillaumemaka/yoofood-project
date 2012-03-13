@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="YouFood">
+		<class>com.youfood.entity.Country</class>
+		<class>com.youfood.entity.DinningRoom</class>
+		<class>com.youfood.entity.Item</class>
+		<class>com.youfood.entity.Menu</class>
+		<class>com.youfood.entity.Order</class>
+		<class>com.youfood.entity.Restaurant</class>
+		<class>com.youfood.entity.Zone</class>
+		<class>com.youfood.entity.TTable</class>
+	</persistence-unit>
+</persistence>
