@@ -58,10 +58,8 @@ body {
 					<c:if test="${ sessionScope.loggedIn == true }">
 						<li><a href="${ pageContext.request.contextPath}/user/create">My
 								Create User</a></li>
-						<li><a href="${ pageContext.request.contextPath}/menu">New
-								Menu Management</a></li>
-						<li><a href="${ pageContext.request.contextPath}/stats">New
-								Marketing</a></li>
+						<li><a href="${ pageContext.request.contextPath}/menu">Menu Management</a></li>
+						<li><a href="${ pageContext.request.contextPath}/stats">Marketing</a></li>
 						<li><a href="${ pageContext.request.contextPath}/logout">Logout</a>
 						</li>
 					</c:if>

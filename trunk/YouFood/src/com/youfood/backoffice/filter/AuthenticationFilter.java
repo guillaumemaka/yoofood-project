@@ -23,8 +23,11 @@ import javax.servlet.http.HttpSession;
 				DispatcherType.FORWARD
 		}
 					, 
-		urlPatterns = { 
-				"/*"				
+		urlPatterns = {
+				"/hone",
+				"/user/*",
+				"/menu/*",
+				"/stats/*"
 		})
 public class AuthenticationFilter implements Filter {
 
@@ -45,12 +48,9 @@ public class AuthenticationFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-		
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {			
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpServletResponse httpResonse = (HttpServletResponse) response;
+		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 		Boolean loggedIn = false;			
 		
@@ -60,11 +60,11 @@ public class AuthenticationFilter implements Filter {
 			if ( loggedIn ){
 				chain.doFilter(request, response);
 			}else{
-				httpRequest.getRequestDispatcher("/").forward(httpRequest, httpResonse);
+				httpResponse.sendRedirect("/");
 			}
 			
 		}catch(NullPointerException e){
-			httpRequest.getRequestDispatcher("/").forward(httpRequest, httpResonse);
+			httpResponse.sendRedirect("/");
 		}
 	}
 

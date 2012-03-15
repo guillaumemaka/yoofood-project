@@ -39,10 +39,10 @@
 							errorElement : "span",
 							messages : {
 								username : {
-									required : "Please enter a valid email address",
+									required : "Please enter your username",
 								},
 								password : {
-									required : "Provide a password"
+									required : "Please Provide a password"
 								}
 							},
 							rules : {
