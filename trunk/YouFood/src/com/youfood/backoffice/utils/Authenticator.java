@@ -4,14 +4,13 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 
 import javax.ejb.EJB;
-import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.servlet.http.HttpSession;
 
 import com.youfood.dao.AuthentificationDao;
 import com.youfood.dao.jpa.JpaUserDao;
 import com.youfood.entity.User;
-.youfood.entity.User;
+
 
 public class Authenticator implements AuthentificationDao{	
 	private String userFullName;
@@ -27,7 +26,7 @@ public class Authenticator implements AuthentificationDao{
 	public AuthenticationError connect(String username, String password) throws Exception{
 		
 				
-		String hashed_password = Authentication.hash(password, "UTF-8");
+		String hashed_password = Authenticator.hash(password, "UTF-8");
 				
 		User user;
 		
