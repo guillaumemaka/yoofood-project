@@ -2,6 +2,11 @@ package com.youfood.exception;
 
 public class ConnexionException extends Exception {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ConnexionException() {
 		// TODO Auto-generated constructor stub
 	}
