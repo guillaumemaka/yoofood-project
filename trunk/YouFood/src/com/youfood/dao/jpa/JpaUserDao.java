@@ -45,4 +45,30 @@ public class JpaUserDao implements UserDao{
 		}		
 	}
 
+	@Override
+	public User find(Long id) {
+		User user = new User();
+		
+		try {
+			user = em.find(User.class, id);
+			return user;
+		} catch (Exception e) {
+			return null;
+		}		
+	}
+
+	@Override
+	public User findUserByUsernameAndPassword(String username, String password) {
+		User user = new User();
+		try {
+			user = (User) em.createQuery("select u from User where u.username= :username And u.password = :password ")
+				.setParameter("username", username)
+				.setParameter("password", password)
+				.getSingleResult();
+			return user;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 }

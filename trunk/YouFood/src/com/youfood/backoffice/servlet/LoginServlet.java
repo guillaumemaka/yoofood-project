@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.supinfo.notetonsta.util.Authentication;
+import com.youfood.backoffice.utils.Authenticator;
 
 /**
  * Servlet implementation class LoginServlet
@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
 	}
 
 	/**
@@ -40,15 +40,14 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		Authentication auth = new Authentication()
-		.setCredentials(
-				request.getParameter("email"),
-				request.getParameter("password"));
+		Authenticator auth = new Authenticator();
 		
 		String message = null;
+		String username = request.getParameter("email");
+		String password = request.getParameter("password");
 		
 		try {
-			switch(auth.authenticate()){
+			switch(auth.connect(username,password)){
 			case PasswordMissMatch:
 				message = "Password missmatch";
 				request.setAttribute("error", message);
