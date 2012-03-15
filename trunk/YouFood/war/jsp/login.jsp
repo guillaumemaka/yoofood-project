@@ -38,7 +38,7 @@
 							errorClass : "error",
 							errorElement : "span",
 							messages : {
-								email : {
+								username : {
 									required : "Please enter a valid email address",
 								},
 								password : {
@@ -46,9 +46,8 @@
 								}
 							},
 							rules : {
-								email : {
-									required : true,
-									email : true,
+								username : {
+									required : true									
 								},
 								password : {
 									required : true,
@@ -64,9 +63,9 @@
 		<form id="login" class="clearfix span8" method="post"
 			action="${ pageContext.request.contextPath }/login">
 			<div class="clearfix">
-				<label for="email">Email:</label>
+				<label for="username">Username:</label>
 				<div class="input">
-					<input type="text" name="email" value="" />
+					<input type="text" name="username" value="" />
 				</div>
 			</div>
 			<div class="clearfix">
