@@ -3,4 +3,9 @@
     <decorator name="main" page="main.jsp">
           <pattern>/*</pattern>
     </decorator>
+    
+    <excludes>
+		<pattern>/assets/*</pattern>
+		<pattern>/rest/*</pattern>
+	</excludes>
 </decorators>
