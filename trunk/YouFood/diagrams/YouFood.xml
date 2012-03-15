@@ -11,10 +11,10 @@
 	</entity>
 
 	<entity>
-		<entity-name>com.youfood.entity.Order</entity-name>
+		<entity-name>com.youfood.entity.Item</entity-name>
 		<entity-width>120</entity-width>
 		<entity-height>186</entity-height>
-		<entity-X-Coordinate>273</entity-X-Coordinate>
+		<entity-X-Coordinate>540</entity-X-Coordinate>
 		<entity-Y-Coordinate>780</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
@@ -22,10 +22,10 @@
 	</entity>
 
 	<entity>
-		<entity-name>com.youfood.entity.Item</entity-name>
+		<entity-name>com.youfood.entity.Order</entity-name>
 		<entity-width>120</entity-width>
 		<entity-height>186</entity-height>
-		<entity-X-Coordinate>540</entity-X-Coordinate>
+		<entity-X-Coordinate>273</entity-X-Coordinate>
 		<entity-Y-Coordinate>780</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
@@ -55,6 +55,17 @@
 	</entity>
 
 	<entity>
+		<entity-name>com.youfood.entity.TTable</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>146</entity-height>
+		<entity-X-Coordinate>273</entity-X-Coordinate>
+		<entity-Y-Coordinate>580</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
 		<entity-name>com.youfood.entity.Restaurant</entity-name>
 		<entity-width>120</entity-width>
 		<entity-height>186</entity-height>
@@ -77,11 +88,11 @@
 	</entity>
 
 	<entity>
-		<entity-name>com.youfood.entity.TTable</entity-name>
+		<entity-name>com.youfood.entity.User</entity-name>
 		<entity-width>120</entity-width>
-		<entity-height>146</entity-height>
-		<entity-X-Coordinate>273</entity-X-Coordinate>
-		<entity-Y-Coordinate>580</entity-Y-Coordinate>
+		<entity-height>148</entity-height>
+		<entity-X-Coordinate>87</entity-X-Coordinate>
+		<entity-Y-Coordinate>248</entity-Y-Coordinate>
 		<primary-collapsed>false</primary-collapsed>
 		<relation-collapsed>false</relation-collapsed>
 		<basic-collapsed>false</basic-collapsed>
