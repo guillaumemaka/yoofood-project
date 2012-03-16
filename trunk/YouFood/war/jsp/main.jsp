@@ -15,6 +15,8 @@
 	href="${ pageContext.request.contextPath}/assets/css/jquery-ui-1.8.16.custom.css" />
 <link type="text/css" rel="stylesheet"
 	href="${ pageContext.request.contextPath}/assets/css/bootstrap.css" />
+<link type="text/css" rel="stylesheet"
+	href="${ pageContext.request.contextPath}/assets/css/bootstrap-responsive.css" />
 <!-- 
 	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
 	  -->
@@ -37,11 +39,13 @@ body {
 </style>
 
 <script type="text/javascript"
-	src="${ pageContext.request.contextPath}/assets/js/jquery-1.6.2.min.js"></script>
+	src="${ pageContext.request.contextPath}/assets/js/jquery-1.7.1.js"></script>
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath}/assets/js/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath}/assets/js/jquery.validate.js"></script>
+<script type="text/javascript"
+	src="${ pageContext.request.contextPath}/assets/js/bootstrap-transition.js"></script>
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath}/assets/js/bootstrap-modal.js"></script>
 <script type="text/javascript"
