@@ -6,8 +6,49 @@
 <head>
 <title>YouFood - User Management</title>
 <!-- import stylesheet, scripts, meta information you need -->
+<script type="text/javascript"
+	src="${ pageContext.request.contextPath}/assets/js/bootstrap-dropdown.js"></script>
 </head>
 <body>
-	<!-- Content to display -->
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>#id</th>
+				<th>username</th>
+				<th>Full Name</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:choose>
+				<c:when test="${ requestScope.users.size() > 0 }">
+					<c:forEach items="${ requestScope.users }" var="user">
+						<tr>
+							<td>${ user.id }</td>
+							<td>${ user.username }</td>
+							<td>${ user.fullname }</td>
+							<td>
+								<div class="btn-group">
+									<a class="btn btn-primary" href="#"><i
+										class="icon-user icon-white"></i> User</a> <a
+										class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+										href="#"><span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="${ pageContext.request.contextPath}/user/edit?id=${ requestScope.user.id }"><i class="icon-pencil"></i> Edit</a></li>
+										<li><a href="${ pageContext.request.contextPath}/user/delete?id=${ requestScope.user.id }"><i class="icon-trash"></i> Delete</a></li>
+									</ul>
+								</div>
+							</td>
+						</tr>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td colspan="4">No user to display</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+		</tbody>
+	</table>
 </body>
 </html>

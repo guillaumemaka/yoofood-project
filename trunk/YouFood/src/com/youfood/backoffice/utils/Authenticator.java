@@ -40,7 +40,7 @@ public class Authenticator implements AuthentificationDao{
 			return AuthenticationError.UserNotFound;
 		}	
 		
-		this.userFullName = user.getFullname();
+		this.userFullName = user.toString();
 		this.userId = user.getId();
 		
 		return AuthenticationError.Success;

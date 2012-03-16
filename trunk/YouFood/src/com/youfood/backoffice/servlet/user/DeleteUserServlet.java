@@ -44,7 +44,7 @@ public class DeleteUserServlet extends HttpServlet {
 			request.setAttribute("error", e.getMessage());
 		}
 		
-		request.setAttribute("success", "User " + user.getFullname() + " deleted successfully");
+		request.setAttribute("success", "User " + user + " deleted successfully");
 		request.getRequestDispatcher("/user").forward(request, response);
 		
 	}
