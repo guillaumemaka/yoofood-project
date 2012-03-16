@@ -1,6 +1,7 @@
 package com.youfood.backoffice.servlet.user;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -38,14 +39,19 @@ public class IndexUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		/*
-		 * TODO
-		 * 
-		 * Paginating users
-		 * 
-		 */
-		
-		List<User> users = userDao.findAll();
+		int page = request.getParameter("page").isEmpty() ? 1 : Integer.parseInt(request.getParameter("page"));
+		int itemsPerPage = this.getServletContext().getInitParameter("items_per_page").isEmpty() ? 25 : Integer.parseInt(this.getServletContext().getInitParameter("items_per_page"));
+	
+		List<User> users = new ArrayList<User>();
+		try {
+			users = userDao.paginate(page,itemsPerPage);
+		} catch (IllegalArgumentException e) {
+			log.severe(e.getMessage());
+			request.setAttribute("error", "An error occur during proccessing your request, please try later or contact your administrator");
+		} catch (IllegalStateException e) {
+			log.severe(e.getMessage());
+			request.setAttribute("error", "An error occur during proccessing your request, please try later or contact your administrator");
+		}
 		request.setAttribute("users", users);
 		request.getRequestDispatcher("/jsp/index.jsp").forward(request, response);
 	}

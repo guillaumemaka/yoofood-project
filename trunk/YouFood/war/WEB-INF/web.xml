@@ -12,4 +12,8 @@
   <welcome-file-list>
     <welcome-file>jsp/login.jsp</welcome-file>
   </welcome-file-list>
+  <context-param>
+  	<param-name>items_per_page</param-name>
+  	<param-value>25</param-value>
+  </context-param>
 </web-app>

@@ -12,7 +12,7 @@ import com.youfood.exception.UserException;
 
 @Stateless
 public class JpaUserDao implements UserDao {
-
+	
 	@PersistenceContext(unitName = "YouFood-PU")
 	private EntityManager em;
 
@@ -90,6 +90,16 @@ public class JpaUserDao implements UserDao {
 			return null;
 		}
 
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> paginate(int offset, int nbentry) throws IllegalArgumentException, IllegalStateException {
+		List<User> users = null;
+				
+		users = (List<User>) em.createQuery("FROM User").setFirstResult(offset).setMaxResults(nbentry).getResultList();
+				
+		return users;
 	}
 
 }
