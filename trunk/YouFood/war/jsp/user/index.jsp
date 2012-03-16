@@ -15,7 +15,8 @@
 			<tr>
 				<th>#id</th>
 				<th>username</th>
-				<th>Full Name</th>
+				<th>Firstname</th>
+				<th>Lastname</th>
 				<th>Actions</th>
 			</tr>
 		</thead>
@@ -26,7 +27,8 @@
 						<tr>
 							<td>${ user.id }</td>
 							<td>${ user.username }</td>
-							<td>${ user.fullname }</td>
+							<td>${ user.firstname }</td>
+							<td>${ user.lastname }</td>
 							<td>
 								<div class="btn-group">
 									<a class="btn btn-primary" href="#"><i
@@ -63,6 +65,7 @@
 					<li><a
 						href="${ pageContext.request.contextPath}/user?page=${requestScope.paginator.getPreviousPage()}">Prev</a></li>
 				</c:if>
+				
 				<c:choose>
 					<c:when test="${ requestScope.paginator.getCurrentPage() == i }">
 						<li class="active"><a href="#">${ i }</a></li>
