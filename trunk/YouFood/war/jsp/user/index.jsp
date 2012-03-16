@@ -14,7 +14,7 @@
 		<thead>
 			<tr>
 				<th>#id</th>
-				<th>username</th>
+				<th>Username</th>
 				<th>Firstname</th>
 				<th>Lastname</th>
 				<th>Actions</th>
@@ -56,31 +56,34 @@
 			</c:choose>
 		</tbody>
 	</table>
-	<div class="pagination">
-		<ul>
-			<c:forEach var="i" begin="1"
-				end="${ requestScope.paginator.getNbPage() }" step="1"
-				varStatus="status">
-				<c:if test="${ requestScope.paginator.getPreviousPage() != null }">
-					<li><a
-						href="${ pageContext.request.contextPath}/user?page=${requestScope.paginator.getPreviousPage()}">Prev</a></li>
-				</c:if>
-				
-				<c:choose>
-					<c:when test="${ requestScope.paginator.getCurrentPage() == i }">
-						<li class="active"><a href="#">${ i }</a></li>
-					</c:when>
-					<c:otherwise>
-						<li><a href="#">${ i }</a></li>
-					</c:otherwise>
-				</c:choose>
+	
+	<c:if test="${ requestScope.users.size() > 0 }">
+		<div class="pagination">
+			<ul>
+				<c:forEach var="i" begin="1"
+					end="${ requestScope.paginator.getNbPage() }" step="1"
+					varStatus="status">
+					<c:if test="${ requestScope.paginator.getPreviousPage() != null }">
+						<li><a
+							href="${ pageContext.request.contextPath}/user?page=${requestScope.paginator.getPreviousPage()}">Prev</a></li>
+					</c:if>
 
-				<c:if test="${ requestScope.paginator.getNextPage() != null }">
-					<li><a
-						href="${ pageContext.request.contextPath}/user?page=${requestScope.paginator.getNextPage()}">Next</a></li>
-				</c:if>
-			</c:forEach>
-		</ul>
-	</div>
+					<c:choose>
+						<c:when test="${ requestScope.paginator.getCurrentPage() == i }">
+							<li class="active"><a href="#">${ i }</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a href="#">${ i }</a></li>
+						</c:otherwise>
+					</c:choose>
+
+					<c:if test="${ requestScope.paginator.getNextPage() != null }">
+						<li><a
+							href="${ pageContext.request.contextPath}/user?page=${requestScope.paginator.getNextPage()}">Next</a></li>
+					</c:if>
+				</c:forEach>
+			</ul>
+		</div>
+	</c:if>
 </body>
 </html>

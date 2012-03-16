@@ -1,6 +1,7 @@
 package com.youfood.dao.jpa;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -12,7 +13,7 @@ import com.youfood.exception.UserException;
 
 @Stateless
 public class JpaUserDao implements UserDao {
-	
+	private Logger log = Logger.getLogger(JpaUserDao.class.getSimpleName());
 	@PersistenceContext(unitName = "YouFood-PU")
 	private EntityManager em;
 
@@ -65,8 +66,9 @@ public class JpaUserDao implements UserDao {
 
 	@Override
 	public User findUserByUsernameAndPassword(String username, String password) {
-		User user = new User();
+		User user = null;
 		try {
+			log.info("findUserByUsernameAndPassword");
 			user = (User) em
 					.createQuery(
 							"select u from User u where u.username = :username And u.password = :password ")
@@ -74,8 +76,10 @@ public class JpaUserDao implements UserDao {
 					.setParameter("password", password).getSingleResult();
 			return user;
 		} catch (Exception e) {
+			e.printStackTrace();
+			log.severe(e.getStackTrace().toString());
 			return null;
-		}
+		}		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -83,6 +87,7 @@ public class JpaUserDao implements UserDao {
 	public List<User> findAll() {
 		List<User> users = null;
 		try {
+			
 			users = (List<User>) em.createQuery("SELECT u FROM User u")
 					.getResultList();
 			return users;

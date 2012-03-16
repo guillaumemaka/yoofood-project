@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +12,8 @@ import com.youfood.dao.AuthentificationDao;
 import com.youfood.dao.jpa.JpaUserDao;
 import com.youfood.entity.User;
 
-
-public class Authenticator implements AuthentificationDao{	
+@Stateless
+public class Authenticator {	
 	private String userFullName;
 	private Long userId;
 	
@@ -70,7 +71,6 @@ public class Authenticator implements AuthentificationDao{
 		return hash;
 	}
 
-	@Override
 	public Boolean disconnect(HttpSession session) throws Exception {
 		try {
 			session.invalidate();

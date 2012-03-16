@@ -3,6 +3,7 @@ package com.youfood.backoffice.servlet;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +18,8 @@ import com.youfood.backoffice.utils.Authenticator;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    @EJB
+	private Authenticator auth;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -38,12 +40,9 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		Authenticator auth = new Authenticator();
-		
+				
 		String message = null;
-		String username = request.getParameter("email");
+		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
 		try {
@@ -51,32 +50,32 @@ public class LoginServlet extends HttpServlet {
 			case PasswordMissMatch:
 				message = "Password missmatch";
 				request.setAttribute("error", message);
-				this.doGet(request, response);
+				request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
 				break;
 			case Success:
 				message = "Your are successfully logged in";
 				request.setAttribute("success", message);
 				request.getSession().setAttribute("loggedIn", true);
 				request.getSession().setAttribute("full_name", auth.getUserFullName());
-				request.getSession().setAttribute("user_id", auth.getUserId());
-				request.getRequestDispatcher("/home").forward(request, response);
+				request.getSession().setAttribute("user_id", auth.getUserId());				
 				break;
 			case UserNotFound:
 				message = "Username provided not found in our record";
 				request.setAttribute("error", message);
-				this.doGet(request, response);
+				request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
 				break;		
 			}
 		} catch (GeneralSecurityException e) {
-			// TODO Auto-generated catch block
+			
 			message = e.getMessage();
 			request.setAttribute("error", message);
-			this.doGet(request, response);
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			message = e.getMessage();
+			request.setAttribute("error", message);
 		}
 		
+		request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
 	}
 
 }
