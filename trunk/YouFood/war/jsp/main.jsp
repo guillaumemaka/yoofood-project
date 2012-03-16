@@ -54,19 +54,22 @@ body {
 <decorator:head />
 </head>
 <body>
-	<div class="topbar">
-		<div class="fill">
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner">
 			<div class="container">
 				<a class="brand" href="${ pageContext.request.contextPath}/home">YouFood</a>
 				<ul class="nav">
-					<c:if test="${ sessionScope.loggedIn == true }">
-						<li><a href="${ pageContext.request.contextPath}/user/create">My
-								Create User</a></li>
-						<li><a href="${ pageContext.request.contextPath}/menu">Menu Management</a></li>
-						<li><a href="${ pageContext.request.contextPath}/stats">Marketing</a></li>
-						<li><a href="${ pageContext.request.contextPath}/logout">Logout</a>
-						</li>
-					</c:if>
+					<%-- 					<c:if test="${ sessionScope.loggedIn == false }"> --%>
+					<li><a href="${ pageContext.request.contextPath}/user"> <i
+							class="icon-user icon-white"></i> User Management
+					</a></li>
+					<li><a href="${ pageContext.request.contextPath}/menu">Menu
+							Management</a></li>
+					<li><a href="${ pageContext.request.contextPath}/stats">Marketing</a></li>
+					<li><a href="${ pageContext.request.contextPath}/logout">
+							<i class="icon-lock icon-white"></i> Logout
+					</a></li>
+					<%-- 					</c:if> --%>
 				</ul>
 			</div>
 		</div>
@@ -88,11 +91,14 @@ body {
 
 		<decorator:body />
 
-		<div class="row">
-			<footer class="span16 center">
+
+		<div class="row span12">
+			<hr />
+			<footer>
 				<em> YouFood &copy;2011 - Limited </em>
 			</footer>
 		</div>
+
 	</div>
 </body>
 </html>

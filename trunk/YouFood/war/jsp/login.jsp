@@ -18,8 +18,7 @@
 										validClass);
 								$(element.form).find(
 										"label[for=" + element.name + "]")
-										.parent("div")
-										.addClass(errorClass)
+										.parent("div").parent("div").addClass(errorClass)
 										.removeClass(validClass);
 							},
 							unhighlight : function(element, errorClass,
@@ -28,7 +27,7 @@
 										validClass);
 								$(element.form).find(
 										"label[for=" + element.name + "]")
-										.parent("div").removeClass(errorClass)
+										.parent("div").parent("div").removeClass(errorClass)
 										.addClass(validClass);
 							},
 							errorPlacement : function(error, element) {
@@ -47,7 +46,7 @@
 							},
 							rules : {
 								username : {
-									required : true									
+									required : true
 								},
 								password : {
 									required : true,
@@ -58,27 +57,35 @@
 </script>
 </head>
 <body>
-	<h1>Login</h1>
-	<div class="clearfix form-stacked hero-unit span8">
-		<form id="login" class="clearfix span8" method="post"
-			action="${ pageContext.request.contextPath }/login">
-			<div class="clearfix">
-				<label for="username">Username:</label>
-				<div class="input">
-					<input type="text" name="username" value="" />
+	
+	<div class="hero-unit row span6">
+		<h1>Restricted Area</h1>
+		<p>This application required a user authentication, please fill the login form bellow</p>
+		<div class="span6" >
+			<form id="login" method="post" 
+				action="${ pageContext.request.contextPath }/login">
+				<div class="control-group">
+					<div class="control-label">
+						<label for="username">Username:</label>
+						<div class="controls">
+							<input class="span6" type="text" name="username" value="" />
+						</div>
+					</div>
 				</div>
-			</div>
-			<div class="clearfix">
-				<label for="password">Password:</label>
-				<div class="input">
-					<input type="password" name="password" value="" />
+				<div class="control-group">
+					<div class="control-label">
+						<label for="password">Password:</label>
+						<div class="controls">
+							<input class="span6" type="password" name="password" value="" />
+						</div>
+					</div>
 				</div>
-			</div>
-			<div class="actions">
-				<input type="submit" class="btn primary" value="Login">&nbsp;
-				<button type="reset" class="btn">Cancel</button>
-			</div>
-		</form>
+				<div class="form-actions">
+					<input type="submit" class="btn btn-primary" value="Login">&nbsp;
+					<button type="reset" class="btn">Cancel</button>
+				</div>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

@@ -5,7 +5,7 @@
     </decorator>
     
     <excludes>
-		<pattern>/assets/*</pattern>
+<!-- 		<pattern>/assets/*</pattern> -->
 		<pattern>/rest/*</pattern>
 	</excludes>
 </decorators>

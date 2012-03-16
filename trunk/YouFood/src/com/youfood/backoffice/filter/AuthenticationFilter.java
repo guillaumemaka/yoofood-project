@@ -53,18 +53,21 @@ public class AuthenticationFilter implements Filter {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 		Boolean loggedIn = false;			
+		String contextPath = httpRequest.getContextPath();
 		
 		try{
 			loggedIn = (Boolean) session.getAttribute("loggedIn");
 						
 			if ( loggedIn ){
 				chain.doFilter(request, response);
-			}else{
-				httpResponse.sendRedirect("/");
+			}else{				
+				httpRequest.getSession().setAttribute("loggedIn", false);
+				httpResponse.sendRedirect(httpResponse.encodeRedirectURL(contextPath + "/login"));
+				//httpRequest.getRequestDispatcher("/login").forward(httpRequest, httpResponse);
 			}
 			
 		}catch(NullPointerException e){
-			httpResponse.sendRedirect("/");
+			httpResponse.sendRedirect(httpResponse.encodeRedirectURL(contextPath + "/login"));
 		}
 	}
 
