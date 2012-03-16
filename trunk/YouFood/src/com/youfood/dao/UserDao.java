@@ -12,5 +12,6 @@ public interface UserDao {
 	public User findUserByUsernameAndPassword(String username, String password);
 	public User create(User user) throws UserException;
 	public User update(User user) throws UserException;
-	public Boolean delete(User user) throws UserException;	
+	public Boolean delete(User user) throws UserException;
+	public int count();
 }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.youfood.backoffice.utils.ListPaginator;
 import com.youfood.dao.jpa.JpaUserDao;
 import com.youfood.entity.User;
 
@@ -38,13 +39,20 @@ public class IndexUserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		ListPaginator paginator = new ListPaginator();
 		int page = request.getParameter("page").isEmpty() ? 1 : Integer.parseInt(request.getParameter("page"));
 		int itemsPerPage = this.getServletContext().getInitParameter("items_per_page").isEmpty() ? 25 : Integer.parseInt(this.getServletContext().getInitParameter("items_per_page"));
-	
+		int offset = (page - 1) * itemsPerPage;
+		
+		
+		paginator.setCurrentPage(page);
+		paginator.setEntryPerPage(itemsPerPage);
+		
 		List<User> users = new ArrayList<User>();
+		
 		try {
-			users = userDao.paginate(page,itemsPerPage);
+			users = userDao.paginate(offset,itemsPerPage);
+			paginator.setEntries(users);
 		} catch (IllegalArgumentException e) {
 			log.severe(e.getMessage());
 			request.setAttribute("error", "An error occur during proccessing your request, please try later or contact your administrator");
@@ -52,6 +60,9 @@ public class IndexUserServlet extends HttpServlet {
 			log.severe(e.getMessage());
 			request.setAttribute("error", "An error occur during proccessing your request, please try later or contact your administrator");
 		}
+		
+		request.setAttribute("paginator", paginator);
+		
 		request.setAttribute("users", users);
 		request.getRequestDispatcher("/jsp/index.jsp").forward(request, response);
 	}

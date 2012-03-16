@@ -69,7 +69,7 @@ public class JpaUserDao implements UserDao {
 		try {
 			user = (User) em
 					.createQuery(
-							"select u from User where u.username = :username And u.password = :password ")
+							"select u from User u where u.username = :username And u.password = :password ")
 					.setParameter("username", username)
 					.setParameter("password", password).getSingleResult();
 			return user;
@@ -100,6 +100,15 @@ public class JpaUserDao implements UserDao {
 		users = (List<User>) em.createQuery("FROM User").setFirstResult(offset).setMaxResults(nbentry).getResultList();
 				
 		return users;
+	}
+
+	@Override
+	public int count() {		
+		Number count;
+		
+		count = (Number) em.createQuery("SELECT COUNT(u.id) FROM User").getSingleResult();
+		
+		return count.intValue();
 	}
 
 }
