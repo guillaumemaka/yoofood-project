@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>Note Ton STA | Login</title>
+<title>YouFood | Login</title>
 <script type="text/javascript">
 	$(function() {
 

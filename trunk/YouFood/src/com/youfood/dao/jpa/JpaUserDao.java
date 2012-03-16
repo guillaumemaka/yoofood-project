@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import com.youfood.dao.UserDao;
 import com.youfood.entity.User;
+import com.youfood.exception.UserException;
 
 @Stateless
 public class JpaUserDao implements UserDao{
@@ -16,34 +17,34 @@ public class JpaUserDao implements UserDao{
 	private EntityManager em;
 	@Override
 	
-	public User create(User user) {
+	public User create(User user) throws UserException{
 		try {
 			em.persist(user);
 		} catch (Exception e) {
-			return null;
+			throw new UserException("Creation of the user: " + user.getFullname() + " failed, please try later or contact the webmaster");
 		}
 		
 		return user;
 	}
 
 	@Override
-	public User update(User user) {
+	public User update(User user) throws UserException {
 		try {
 			em.persist(em.merge(user));
 		} catch (Exception e) {
-			return null;
+			throw new UserException("Update of the user: " + user.getFullname() + " failed, please try later or contact the webmaster");
 		}
 		
 		return user;
 	}
 
 	@Override
-	public Boolean delete(User user) {
+	public Boolean delete(User user) throws UserException {
 		try {
 			em.remove(em.merge(user));
 			return true;
 		} catch (Exception e) {
-			return false;
+			throw new UserException("Deletion of the user: " + user.getFullname() + " failed, please try later or contact the webmaster");			
 		}		
 	}
 
@@ -73,11 +74,12 @@ public class JpaUserDao implements UserDao{
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAll() {
 		List<User> users = null;
 		try {
-			users = em.createQuery("SELECT u FROM User u").getResultList();
+			users = (List<User>) em.createQuery("SELECT u FROM User u").getResultList();
 			return users;
 		} catch (Exception e) {
 			return null;
