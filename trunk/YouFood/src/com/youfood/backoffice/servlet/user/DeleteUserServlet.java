@@ -16,7 +16,7 @@ import com.youfood.exception.UserException;
 /**
  * Servlet implementation class DeleteUserServlet
  */
-@WebServlet("/user/delete/*")
+@WebServlet("/user/delete")
 public class DeleteUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     

@@ -8,67 +8,39 @@ import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.servlet.http.HttpSession;
 
-import com.youfood.dao.AuthentificationDao;
-import com.youfood.dao.jpa.JpaUserDao;
+import com.youfood.backoffice.service.UserService;
 import com.youfood.entity.User;
 
 @Stateless
-public class Authenticator {	
+public class Authenticator {
 	private String userFullName;
 	private Long userId;
-	
-	@EJB 
-	private JpaUserDao userDao;
-	
-	public Authenticator(){
-		
+
+	@EJB
+	private UserService userService;
+
+	public Authenticator() {
+
 	}
-	
-	public AuthenticationError connect(String username, String password) throws Exception{
-		
-				
+
+	public AuthenticationError connect(String username, String password)
+			throws Exception {
+
 		String hashed_password = Authenticator.hash(password, "UTF-8");
-				
-		User user;
-		
-		try {
-			user = userDao.findUserByUsernameAndPassword(username, hashed_password);
-		} catch (NoResultException e) {			
-			user = null;
-		}
-						
-		if ( user == null ){
+
+		User user = null;
+
+		user = userService.findUserByUsernameAndPassword(username,
+				hashed_password);
+
+		if (user == null) {
 			return AuthenticationError.UserNotFound;
-		}	
-		
+		}
+
 		this.userFullName = user.toString();
 		this.userId = user.getId();
-		
+
 		return AuthenticationError.Success;
-	}
-
-	public String getUserFullName() {
-		return this.userFullName;
-	}
-
-	public Long getUserId() {
-		return this.userId;
-	}	
-	
-	
-	/**
-	 * 
-	 * Static method
-	 * @throws Exception 
-	 * 
-	 */
-	
-	public static String hash(String data, String charset) throws Exception{
-		MessageDigest md = MessageDigest.getInstance("MD5");
-		md.reset();
-		md.update(data.getBytes(charset),0,data.length());
-		String hash = new BigInteger(1,md.digest()).toString(16);
-		return hash;
 	}
 
 	public Boolean disconnect(HttpSession session) throws Exception {
@@ -78,9 +50,31 @@ public class Authenticator {
 		} catch (Exception e) {
 			return false;
 		}
-		
+
 	}
 
-	
-	
+	public String getUserFullName() {
+		return this.userFullName;
+	}
+
+	public Long getUserId() {
+		return this.userId;
+	}
+
+	/**
+	 * 
+	 * Static method
+	 * 
+	 * @throws Exception
+	 * 
+	 */
+
+	public static String hash(String data, String charset) throws Exception {
+		MessageDigest md = MessageDigest.getInstance("MD5");
+		md.reset();
+		md.update(data.getBytes(charset), 0, data.length());
+		String hash = new BigInteger(1, md.digest()).toString(16);
+		return hash;
+	}
+
 }

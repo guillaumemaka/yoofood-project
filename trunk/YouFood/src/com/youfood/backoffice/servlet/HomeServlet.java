@@ -27,7 +27,9 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {				
-		response.sendRedirect(this.getServletContext().getContextPath() + "/home");
+		
+		request.getRequestDispatcher("/jsp/home.jsp").forward(request, response);
+		//response.sendRedirect(this.getServletContext().getContextPath() + "/home");
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		

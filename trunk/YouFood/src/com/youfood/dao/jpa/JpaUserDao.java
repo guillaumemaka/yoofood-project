@@ -71,7 +71,7 @@ public class JpaUserDao implements UserDao {
 			log.info("findUserByUsernameAndPassword");
 			user = (User) em
 					.createQuery(
-							"select u from User u where u.username = :username And u.password = :password ")
+							"SELECT u FROM User AS u where u.username = :username AND u.password = :password ")
 					.setParameter("username", username)
 					.setParameter("password", password).getSingleResult();
 			return user;
@@ -79,7 +79,7 @@ public class JpaUserDao implements UserDao {
 			e.printStackTrace();
 			log.severe(e.getStackTrace().toString());
 			return null;
-		}		
+		}
 	}
 
 	@SuppressWarnings("unchecked")
@@ -87,7 +87,7 @@ public class JpaUserDao implements UserDao {
 	public List<User> findAll() {
 		List<User> users = null;
 		try {
-			
+
 			users = (List<User>) em.createQuery("SELECT u FROM User u")
 					.getResultList();
 			return users;
@@ -99,20 +99,23 @@ public class JpaUserDao implements UserDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> paginate(int offset, int nbentry) throws IllegalArgumentException, IllegalStateException {
+	public List<User> paginate(int offset, int nbentry)
+			throws IllegalArgumentException, IllegalStateException {
 		List<User> users = null;
-				
-		users = (List<User>) em.createQuery("FROM User").setFirstResult(offset).setMaxResults(nbentry).getResultList();
-				
+
+		users = (List<User>) em.createQuery("FROM User").setFirstResult(offset)
+				.setMaxResults(nbentry).getResultList();
+
 		return users;
 	}
 
 	@Override
-	public int count() {		
+	public int count() {
 		Number count;
-		
-		count = (Number) em.createQuery("SELECT COUNT(u.id) FROM User").getSingleResult();
-		
+
+		count = (Number) em.createQuery("SELECT COUNT(u.id) FROM User")
+				.getSingleResult();
+
 		return count.intValue();
 	}
 

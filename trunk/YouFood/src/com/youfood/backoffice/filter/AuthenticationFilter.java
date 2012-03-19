@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 		}
 					, 
 		urlPatterns = {
-				"/hone",
+				"/home",
 				"/user/*",
 				"/menu/*",
 				"/stats/*"
@@ -61,13 +61,13 @@ public class AuthenticationFilter implements Filter {
 			if ( loggedIn ){
 				chain.doFilter(request, response);
 			}else{				
-				httpRequest.getSession().setAttribute("loggedIn", false);
-				httpResponse.sendRedirect(httpResponse.encodeRedirectURL(contextPath + "/login"));
-				//httpRequest.getRequestDispatcher("/login").forward(httpRequest, httpResponse);
+				//httpResponse.sendRedirect(httpResponse.encodeRedirectURL(contextPath + "/login"));
+				httpRequest.getRequestDispatcher("/jsp/login.jsp").forward(httpRequest, httpResponse);
 			}
 			
 		}catch(NullPointerException e){
-			httpResponse.sendRedirect(httpResponse.encodeRedirectURL(contextPath + "/login"));
+			//httpResponse.sendRedirect(httpResponse.encodeRedirectURL(contextPath + "/login"));
+			httpRequest.getRequestDispatcher("/jsp/login.jsp").forward(httpRequest, httpResponse);
 		}
 	}
 

@@ -17,7 +17,7 @@ import com.youfood.exception.UserException;
 /**
  * Servlet implementation class CreateUserServlet
  */
-@WebServlet({ "/user/create", "/user" })
+@WebServlet({ "/user/create" })
 public class CreateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     @EJB
